@@ -1,0 +1,21 @@
+# The image only needs the API source, migrations and the dependency list.
+# Secrets come from docker-compose's env_file, never from the image.
+.env
+.git/
+.github/
+.vercel/
+.venv/
+venv/
+web/
+docs/
+tests/
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+Dockerfile
+docker-compose.yml

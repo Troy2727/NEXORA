@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="nx" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD54A"/>
+      <stop offset="0.55" stop-color="#FFB81C"/>
+      <stop offset="1" stop-color="#E88A00"/>
+    </linearGradient>
+  </defs>
+  <!-- One band tracing a hexagon as an N: up the left, over the top, down the middle, under the bottom, up the right. -->
+  <path d="M3.88 23V9L16 2L19 3.73V22.5L23.12 20.12V6.11L28.12 9V23L16 30L13 28.27V9.5L8.88 11.88V25.89Z" fill="url(#nx)"/>
+</svg>

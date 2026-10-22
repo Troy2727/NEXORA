@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · NEXORA</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/team.css">
+</head>
+<body class="is-loading">
+  <div class="app">
+    <aside class="sidebar">
+      <a class="logo" href="index.html"><img src="assets/logo.svg" alt=""><img class="wordmark" src="assets/wordmark.svg" alt="NEXORA"></a>
+
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="overview">
+          <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+          Overview
+        </button>
+        <button class="nav-item" data-view="board">
+          <svg viewBox="0 0 24 24"><path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm3.5 8.5 2.5 2.5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Tasks
+          <span class="badge" id="nav-count" hidden></span>
+        </button>
+        <button class="nav-item" data-view="time"><svg><use href="assets/icons.svg#timer"/></svg>Time<span class="live-dot" id="nav-timer" title="Timer running" hidden></span></button>
+        <button class="nav-item" data-view="goals"><svg><use href="assets/icons.svg#target"/></svg>Goals</button>
+        <button class="nav-item" data-view="reports"><svg><use href="assets/icons.svg#bar-chart"/></svg>Reports</button>
+        <span class="side-divider" aria-hidden="true"></span>
+        <button class="nav-item" data-view="team"><svg><use href="assets/icons.svg#users"/></svg>Team<span class="badge" id="nav-invites" title="Team invitations" hidden></span></button>
+        <button class="nav-item" data-view="calendar">
+          <svg viewBox="0 0 24 24"><path d="M8 3v3M16 3v3M4 10h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Calendar
+        </button>
+        <button class="nav-item" data-view="messages"><svg><use href="assets/icons.svg#message"/></svg>Messages<span class="badge" id="nav-unread" title="Unread messages" hidden></span></button>
+        <button class="nav-item" data-view="settings"><svg><use href="assets/icons.svg#settings"/></svg>Settings</button>
+      </nav>
+
+      <div class="side-card">
+        <p class="side-card-title">Plan your next move</p>
+        <p class="small">Capture it now, sort it out later.</p>
+        <button class="btn btn-light btn-sm" data-action="new">New task <svg class="icon"><use href="assets/icons.svg#arrow-right"/></svg></button>
+      </div>
+
+      <div class="profile">
+        <button class="avatar avatar-sm avatar-btn" id="side-avatar" data-action="photo" title="Change profile photo" aria-label="Change profile photo"></button>
+        <div class="profile-text">
+          <p class="profile-name" id="profile-name"></p>
+          <p class="profile-email" id="profile-email"></p>
+        </div>
+        <button class="icon-btn" id="signout" title="Sign out" aria-label="Sign out">
+          <svg class="icon"><use href="assets/icons.svg#log-out"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="muted small">Welcome back,</p>
+          <h1><span id="greeting">…</span> <svg class="icon wave" aria-hidden="true"><use href="assets/icons.svg#hand"/></svg></h1>
+          <p class="muted small"><span id="today"></span> · Here's where your tasks stand today.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn icon-btn-accent" data-action="search" title="Search tasks (/)" aria-label="Search tasks"><svg class="icon"><use href="assets/icons.svg#search"/></svg></button>
+          <button class="icon-btn icon-btn-accent" title="Notifications" aria-label="Notifications"><svg class="icon"><use href="assets/icons.svg#bell"/></svg></button>
+          <button class="btn btn-primary" data-action="new" title="New task (N)"><svg class="icon"><use href="assets/icons.svg#plus"/></svg> New task <kbd>N</kbd></button>
+          <button class="avatar avatar-btn" id="avatar" data-action="photo" title="Change profile photo" aria-label="Change profile photo"></button>
+        </div>
+      </header>
+
+      <p class="alert" id="load-error" hidden></p>
+
+      <section class="card welcome" id="welcome" hidden>
+        <span class="welcome-icon"><svg class="icon"><use href="assets/icons.svg#zap"/></svg></span>
+        <h2>Let's put your first task on the board</h2>
+        <p class="muted">Add something you're working on. Your progress, activity and what's next will show up here as soon as you do.</p>
+        <button class="btn btn-primary" data-action="new"><svg class="icon"><use href="assets/icons.svg#plus"/></svg> Create your first task</button>
+        <ol class="steps">
+          <li><span>1</span>Create a task</li>
+          <li><span>2</span>Start it when you begin</li>
+          <li><span>3</span>Complete it when it's done</li>
+        </ol>
+      </section>
+
+      <section class="view overview" id="view-overview">
+        <div class="card focus">
+          <h2 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#zap"/></svg>Today's focus</h2>
+          <div class="focus-stats">
+            <div class="stat"><span class="ring tone-orange"><svg class="icon"><use href="assets/icons.svg#clock"/></svg></span><div><b id="stat-left">0</b><p>Tasks left</p><p class="stat-note" id="note-left"></p></div></div>
+            <div class="stat"><span class="ring tone-gray"><svg class="icon"><use href="assets/icons.svg#play"/></svg></span><div><b id="stat-progress">0</b><p>In progress</p><p class="stat-note" id="note-progress"></p></div></div>
+            <div class="stat"><span class="ring tone-green"><svg class="icon"><use href="assets/icons.svg#check"/></svg></span><div><b id="stat-rate">0%</b><p>Completion rate</p><p class="stat-note" id="note-rate"></p></div></div>
+          </div>
+          <div class="focus-note" id="focus-note"></div>
+        </div>
+
+        <div class="card hero-card">
+          <p class="hero-kicker">Progress</p>
+          <b class="hero-pct" id="goal-pct">0%</b>
+          <p id="goal-sub">0 of 0 tasks completed</p>
+          <span class="bar"><i id="goal-bar"></i></span>
+          <button class="btn btn-dark btn-sm" data-view="board">Open board</button>
+        </div>
+
+        <div class="card trend">
+          <h2 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#trending-up"/></svg>Activity <span class="muted small">· tasks updated, last 7 days</span></h2>
+          <div class="trend-head"><b id="trend-total">0</b><span class="muted small">updates this week</span><span class="delta" id="trend-delta"></span></div>
+          <div id="trend-chart"></div>
+        </div>
+
+        <div class="card donut-card">
+          <h2 class="card-title">Task overview</h2>
+          <div class="donut-wrap">
+            <div class="donut" id="donut"></div>
+            <ul class="legend" id="legend"></ul>
+          </div>
+        </div>
+
+        <div class="card recent">
+          <h2 class="card-title">Recent activity</h2>
+          <ul class="list" id="recent"></ul>
+        </div>
+
+        <div class="card upnext">
+          <h2 class="card-title">Up next</h2>
+          <ul class="list" id="upnext"></ul>
+        </div>
+      </section>
+
+      <section class="view" id="view-board" hidden>
+        <div class="board-toolbar">
+          <input class="input search" id="search" type="search" placeholder="Search tasks…" aria-label="Search tasks">
+        </div>
+        <div class="board" id="board"></div>
+      </section>
+
+      <section class="view cal" id="view-calendar" hidden>
+        <div class="cal-toolbar">
+          <div>
+            <h2 id="cal-title"></h2>
+            <p class="muted small" id="cal-sub"></p>
+          </div>
+          <div class="cal-actions">
+            <input class="input cal-search" id="cal-search" type="search" placeholder="Search your schedule…" aria-label="Search scheduled tasks">
+            <button class="btn btn-sm" data-cal="prev" aria-label="Previous week"><svg class="icon"><use href="assets/icons.svg#chevron-left"/></svg><span class="cal-btn-label">Prev</span></button>
+            <button class="btn btn-sm" data-cal="today">Today</button>
+            <button class="btn btn-sm" data-cal="next" aria-label="Next week"><span class="cal-btn-label">Next</span><svg class="icon"><use href="assets/icons.svg#chevron-right"/></svg></button>
+          </div>
+        </div>
+        <div class="cal-body">
+          <aside class="cal-side">
+            <div class="mini-cal" id="mini-cal"></div>
+            <div>
+              <p class="cal-side-title">Next up</p>
+              <ul class="next-up" id="next-up"></ul>
+            </div>
+          </aside>
+          <div class="week-wrap" id="week-wrap"></div>
+        </div>
+        <div class="cal-footer" id="cal-footer"></div>
+      </section>
+
+      <section class="view page" id="view-time" hidden>
+        <div class="page-head">
+          <h2>Time</h2>
+          <p class="muted small">Track focused time against your tasks. Entries are saved in this browser.</p>
+        </div>
+        <div class="page-grid">
+          <div class="card timer-card">
+            <h3 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#timer"/></svg>Timer</h3>
+            <label class="field"><span class="muted small">Working on</span>
+              <select class="input" id="timer-task"></select></label>
+            <b class="timer-display" id="timer-display">00:00:00</b>
+            <button class="btn btn-primary" data-action="timer-toggle" id="timer-toggle"></button>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Totals</h3>
+            <div class="kpis kpis-2">
+              <div class="kpi"><span>Today</span><b id="time-today">0m</b></div>
+              <div class="kpi"><span>This week</span><b id="time-week">0m</b></div>
+            </div>
+          </div>
+          <div class="card span-2">
+            <h3 class="card-title">Today's sessions</h3>
+            <ul class="list" id="time-entries"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="view page" id="view-goals" hidden>
+        <div class="page-head">
+          <h2>Goals</h2>
+          <p class="muted small">Set targets for your week. Targets are saved in this browser.</p>
+        </div>
+        <div class="page-grid">
+          <div class="card goal-card">
+            <h3 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#target"/></svg>Weekly goal</h3>
+            <p class="goal-line"><b id="goal-week-done">0</b> of <b id="goal-week-target">0</b> tasks completed this week</p>
+            <span class="goal-bar"><i id="goal-week-bar"></i></span>
+            <p class="muted small" id="goal-week-note"></p>
+            <form class="goal-form" data-goal="weekly">
+              <label class="muted small" for="goal-week-input">Target</label>
+              <input class="input" id="goal-week-input" type="number" min="1" max="200" required>
+              <button class="btn btn-sm" type="submit">Save</button>
+            </form>
+          </div>
+          <div class="card goal-card">
+            <h3 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#timer"/></svg>Daily focus</h3>
+            <p class="goal-line"><b id="goal-focus-done">0m</b> of <b id="goal-focus-target">0m</b> focused today</p>
+            <span class="goal-bar"><i id="goal-focus-bar"></i></span>
+            <p class="muted small">Uses the time you track on the Time page.</p>
+            <form class="goal-form" data-goal="focus">
+              <label class="muted small" for="goal-focus-input">Minutes</label>
+              <input class="input" id="goal-focus-input" type="number" min="5" max="960" step="5" required>
+              <button class="btn btn-sm" type="submit">Save</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="view page" id="view-reports" hidden>
+        <div class="page-head page-head-row">
+          <div>
+            <h2>Reports</h2>
+            <p class="muted small">Live numbers from your tasks.</p>
+          </div>
+          <button class="btn btn-sm" data-action="export"><svg class="icon"><use href="assets/icons.svg#download"/></svg> Export CSV</button>
+        </div>
+        <div class="kpis" id="report-kpis"></div>
+        <div class="page-grid">
+          <div class="card span-2">
+            <div class="chart-head">
+              <div>
+                <h3 class="card-title"><svg class="icon ic"><use href="assets/icons.svg#bar-chart"/></svg>Created vs completed</h3>
+                <p class="muted small">Tasks per week, last 8 weeks</p>
+              </div>
+              <ul class="chart-legend" id="report-legend"></ul>
+            </div>
+            <div class="chart" id="report-weekly"></div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Status breakdown</h3>
+            <div id="report-status"></div>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Overdue</h3>
+            <ul class="list" id="report-overdue"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="view page" id="view-team" hidden>
+        <div class="page-head"><h2>Team</h2></div>
+        <div class="team-root" id="team-root"></div>
+      </section>
+
+      <section class="view page" id="view-messages" hidden>
+        <div class="page-head"><h2>Messages</h2></div>
+        <div class="card soon-card" id="chat-empty" hidden>
+          <span class="welcome-icon"><svg class="icon"><use href="assets/icons.svg#message"/></svg></span>
+          <h3>Chat with your team</h3>
+          <p class="muted">Messages are shared with everyone in your team. Create a team or accept an invite to start chatting.</p>
+          <button class="btn btn-primary" data-view="team">Go to Team</button>
+        </div>
+        <div class="card chat" id="chat" hidden>
+          <div class="chat-head">
+            <div><h3 id="chat-title"></h3><p class="muted small" id="chat-sub"></p></div>
+            <div class="chat-faces" id="chat-faces"></div>
+          </div>
+          <div class="chat-log" id="chat-log" role="log" aria-live="polite" tabindex="0"></div>
+          <form class="chat-compose" id="chat-form">
+            <textarea class="input" id="chat-input" rows="1" maxlength="2000" placeholder="Message your team…" aria-label="Message"></textarea>
+            <button class="btn btn-primary" type="submit"><svg class="icon"><use href="assets/icons.svg#send"/></svg> Send</button>
+          </form>
+          <p class="muted small chat-hint">Enter to send · Shift+Enter for a new line</p>
+        </div>
+      </section>
+
+      <section class="view page" id="view-settings" hidden>
+        <div class="page-head"><h2>Settings</h2></div>
+        <div class="page-grid">
+          <div class="card">
+            <h3 class="card-title">Profile</h3>
+            <div class="photo-row">
+              <span class="avatar avatar-lg" id="settings-avatar" aria-hidden="true"></span>
+              <div class="photo-actions">
+                <div class="photo-buttons">
+                  <button class="btn btn-sm" data-action="photo">Upload photo</button>
+                  <button class="btn btn-ghost btn-sm" data-action="photo-remove" id="photo-remove" hidden>Remove</button>
+                </div>
+                <p class="muted small">PNG, JPEG or WebP. It's cropped to a square.</p>
+              </div>
+            </div>
+            <form class="settings-form" id="profile-form">
+              <p class="alert" hidden></p>
+              <div class="form-row">
+                <div class="field"><label for="set-first">First name</label>
+                  <input class="input" id="set-first" name="first_name" maxlength="100" autocomplete="given-name"></div>
+                <div class="field"><label for="set-last">Last name</label>
+                  <input class="input" id="set-last" name="last_name" maxlength="100" autocomplete="family-name"></div>
+              </div>
+              <div class="field"><label for="set-email">Email</label>
+                <input class="input" id="set-email" type="email" readonly aria-describedby="email-note">
+                <p class="muted small" id="email-note">Changing your email needs a new verification step, which isn't available yet.</p></div>
+              <button class="btn btn-primary btn-sm" type="submit">Save profile</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Password</h3>
+            <form class="settings-form" id="password-form">
+              <p class="alert" hidden></p>
+              <div class="field"><label for="set-current">Current password</label>
+                <input class="input" id="set-current" name="current_password" type="password" autocomplete="current-password" required></div>
+              <div class="field"><label for="set-new">New password</label>
+                <input class="input" id="set-new" name="new_password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required>
+                <p class="muted small">At least 8 characters.</p></div>
+              <div class="field"><label for="set-confirm">Confirm new password</label>
+                <input class="input" id="set-confirm" name="confirm" type="password" autocomplete="new-password" required></div>
+              <button class="btn btn-primary btn-sm" type="submit">Change password</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Preferences</h3>
+            <form class="settings-form" id="prefs-form">
+              <div class="field"><label for="set-start">Open this page after signing in</label>
+                <select class="input" id="set-start" name="startView">
+                  <option value="overview">Overview</option>
+                  <option value="board">Tasks</option>
+                  <option value="calendar">Calendar</option>
+                </select></div>
+              <p class="muted small">Saved in this browser.</p>
+            </form>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Account</h3>
+            <dl class="details" id="settings-profile"></dl>
+            <p class="muted small">Connected to <code id="settings-api"></code></p>
+            <button class="btn btn-sm" data-action="signout"><svg class="icon"><use href="assets/icons.svg#log-out"/></svg> Sign out</button>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Keyboard shortcuts</h3>
+            <dl class="details">
+              <dt><kbd>N</kbd></dt><dd>New task</dd>
+              <dt><kbd>/</kbd></dt><dd>Search tasks</dd>
+              <dt><kbd>Esc</kbd></dt><dd>Close a dialog</dd>
+            </dl>
+          </div>
+          <div class="card">
+            <h3 class="card-title">Data in this browser</h3>
+            <p class="muted small">Time entries, goal targets and preferences are stored on this device only.</p>
+            <button class="btn btn-danger btn-sm" data-action="clear-local">Clear time entries, goals and preferences</button>
+          </div>
+          <div class="card span-2 danger-card">
+            <h3 class="card-title">Delete account</h3>
+            <p class="muted small">Permanently deletes your account, your profile photo and all of your tasks. This can't be undone.</p>
+            <form class="settings-form danger-form" id="delete-form">
+              <p class="alert" hidden></p>
+              <div class="field"><label for="set-delete-pass">Confirm with your password</label>
+                <input class="input" id="set-delete-pass" name="password" type="password" autocomplete="current-password" required></div>
+              <button class="btn btn-danger btn-sm" type="submit">Delete my account</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="dialog" id="task-dialog">
+    <form method="dialog" class="dialog-body" id="task-form">
+      <h2 id="dialog-title">New task</h2>
+      <p class="alert" id="dialog-error" hidden></p>
+      <div class="field"><label for="task-title">Title</label>
+        <input class="input" id="task-title" name="title" maxlength="255" required></div>
+      <div class="field"><label for="task-description">Description</label>
+        <textarea class="input" id="task-description" name="description" maxlength="1000"></textarea></div>
+      <div class="field"><label for="task-due">Due <span class="muted">(optional)</span></label>
+        <input class="input" id="task-due" name="due" type="datetime-local" max="9999-12-31T23:59"></div>
+      <div class="dialog-actions">
+        <button class="btn btn-danger" type="button" id="task-delete" hidden>Delete</button>
+        <span class="spacer"></span>
+        <button class="btn btn-ghost" type="button" id="task-cancel">Cancel</button>
+        <button class="btn btn-primary" type="submit" id="task-save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+  <input type="file" id="photo-input" accept="image/png,image/jpeg,image/webp" hidden>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

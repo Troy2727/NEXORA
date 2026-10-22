@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA · Data model</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #09090b; color: #f4f4f5; min-height: 100vh;
+           display: flex; align-items: center; justify-content: center; padding: 3rem 2rem; }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+               text-transform: uppercase; color: #b4b4bc; margin-bottom: 0.5rem; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: 2.5rem; font-weight: 400; letter-spacing: -0.02em;
+         line-height: 1.15; margin-bottom: 1.5rem; }
+    svg { width: 100%; min-width: 880px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Data model · NEXORA</p>
+    <h1>Data model</h1>
+    <svg viewBox="0 0 960 676" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="data-model-dark-title data-model-dark-desc">
+      <title id="data-model-dark-title">NEXORA · Data model</title>
+      <desc id="data-model-dark-desc">Entity-relationship diagram showing users owning tasks, joining at most one team through team members, teams sending invites and containing messages, and users writing messages.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#b4b4bc"/></marker>
+        <marker id="arrow-accent" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#ff8a1f"/></marker>
+        <marker id="arrow-link" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#8fa8ff"/></marker>
+      </defs>
+      <rect width="100%" height="100%" fill="#09090b"/>
+
+      <!-- Relationship lines (drawn first) -->
+      <line x1="280" y1="120" x2="360" y2="120" stroke="#b4b4bc" stroke-width="1.4"/>
+      <line x1="600" y1="120" x2="680" y2="120" stroke="#b4b4bc" stroke-width="1.4"/>
+      <line x1="800" y1="200" x2="800" y2="344" stroke="#b4b4bc" stroke-width="1.4"/>
+      <line x1="480" y1="272" x2="480" y2="344" stroke="#b4b4bc" stroke-width="1.4"/>
+      <line x1="600" y1="412" x2="680" y2="412" stroke="#b4b4bc" stroke-width="1.4"/>
+      <path d="M 800,480 V 536 Q 800,544 792,544 H 168 Q 160,544 160,536 V 504" fill="none" stroke="#b4b4bc" stroke-width="1.4"/>
+
+      <rect x="284" y="112" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="292" y="125" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">N</text>
+      <rect x="340" y="112" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="348" y="125" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="604" y="112" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="612" y="125" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="636" y="112" width="40" height="16" rx="3" fill="#09090b"/>
+      <text x="656" y="125" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">0..1</text>
+      <rect x="792" y="204" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="800" y="217" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">N</text>
+      <rect x="792" y="324" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="800" y="337" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="472" y="276" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="480" y="289" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="472" y="324" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="480" y="337" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">N</text>
+      <rect x="660" y="404" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="668" y="417" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="604" y="404" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="612" y="417" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">N</text>
+      <rect x="792" y="484" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="800" y="497" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">1</text>
+      <rect x="152" y="508" width="16" height="16" rx="3" fill="#09090b"/>
+      <text x="160" y="521" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">N</text>
+      <rect x="298" y="92" width="44" height="16" rx="3" fill="#09090b"/>
+      <text x="320" y="104" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">OWNS</text>
+      <rect x="614" y="92" width="52" height="16" rx="3" fill="#09090b"/>
+      <text x="640" y="104" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">JOINS</text>
+      <rect x="812" y="264" width="36" height="16" rx="3" fill="#09090b"/>
+      <text x="830" y="276" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">HAS</text>
+      <rect x="492" y="300" width="56" height="16" rx="3" fill="#09090b"/>
+      <text x="520" y="312" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">WRITES</text>
+      <rect x="604" y="384" width="72" height="16" rx="3" fill="#09090b"/>
+      <text x="640" y="396" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">CONTAINS</text>
+      <rect x="294" y="516" width="52" height="16" rx="3" fill="#09090b"/>
+      <text x="320" y="528" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">SENDS</text>
+
+      <!-- Entities -->
+      <rect x="40" y="40" width="240" height="208" rx="8" fill="#09090b"/>
+      <rect x="40" y="40" width="240" height="208" rx="8" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <path d="M 40,88 V 48 Q 40,40 48,40 H 272 Q 280,40 280,48 V 88 Z" fill="rgba(244,244,245,0.05)"/>
+      <line x1="40" y1="88" x2="280" y2="88" stroke="rgba(244,244,245,0.2)" stroke-width="1"/>
+      <text x="56" y="58" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">TABLE</text>
+      <text x="56" y="79" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Tasks</text>
+      <text x="56" y="110" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="264" y="110" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="56" y="134" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ user_id</text><text x="264" y="134" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="56" y="158" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">title</text><text x="264" y="158" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="56" y="182" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">description</text><text x="264" y="182" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="56" y="206" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">status</text><text x="264" y="206" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">enum</text>
+      <text x="56" y="230" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">due_at</text><text x="264" y="230" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">timestamp</text>
+      <rect x="360" y="40" width="240" height="232" rx="8" fill="#09090b"/>
+      <rect x="360" y="40" width="240" height="232" rx="8" fill="rgba(255,138,31,0.05)" stroke="#ff8a1f" stroke-width="1.6"/>
+      <path d="M 360,88 V 48 Q 360,40 368,40 H 592 Q 600,40 600,48 V 88 Z" fill="rgba(255,138,31,0.13)"/>
+      <line x1="360" y1="88" x2="600" y2="88" stroke="rgba(255,138,31,0.5)" stroke-width="1"/>
+      <text x="376" y="58" fill="#ff8a1f" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">CENTRAL ENTITY</text>
+      <text x="376" y="79" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Users</text>
+      <text x="376" y="110" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="584" y="110" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="376" y="134" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">email</text><text x="584" y="134" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="376" y="158" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">hashed_password</text><text x="584" y="158" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="376" y="182" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">first_name</text><text x="584" y="182" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="376" y="206" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">last_name</text><text x="584" y="206" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="376" y="230" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">avatar</text><text x="584" y="230" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">data url</text>
+      <text x="376" y="254" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">last_login</text><text x="584" y="254" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">timestamp</text>
+      <rect x="680" y="40" width="240" height="160" rx="8" fill="#09090b"/>
+      <rect x="680" y="40" width="240" height="160" rx="8" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <path d="M 680,88 V 48 Q 680,40 688,40 H 912 Q 920,40 920,48 V 88 Z" fill="rgba(244,244,245,0.05)"/>
+      <line x1="680" y1="88" x2="920" y2="88" stroke="rgba(244,244,245,0.2)" stroke-width="1"/>
+      <text x="696" y="58" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">TABLE</text>
+      <text x="696" y="79" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Team members</text>
+      <text x="696" y="110" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="904" y="110" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="696" y="134" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ team_id</text><text x="904" y="134" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="696" y="158" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ user_id</text><text x="904" y="158" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int · unique</text>
+      <text x="696" y="182" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">role</text><text x="904" y="182" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">enum</text>
+      <rect x="360" y="344" width="240" height="160" rx="8" fill="#09090b"/>
+      <rect x="360" y="344" width="240" height="160" rx="8" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <path d="M 360,392 V 352 Q 360,344 368,344 H 592 Q 600,344 600,352 V 392 Z" fill="rgba(244,244,245,0.05)"/>
+      <line x1="360" y1="392" x2="600" y2="392" stroke="rgba(244,244,245,0.2)" stroke-width="1"/>
+      <text x="376" y="362" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">TABLE</text>
+      <text x="376" y="383" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Messages</text>
+      <text x="376" y="414" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="584" y="414" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="376" y="438" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ team_id</text><text x="584" y="438" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="376" y="462" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ user_id</text><text x="584" y="462" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int · null</text>
+      <text x="376" y="486" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">body</text><text x="584" y="486" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <rect x="680" y="344" width="240" height="136" rx="8" fill="#09090b"/>
+      <rect x="680" y="344" width="240" height="136" rx="8" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <path d="M 680,392 V 352 Q 680,344 688,344 H 912 Q 920,344 920,352 V 392 Z" fill="rgba(244,244,245,0.05)"/>
+      <line x1="680" y1="392" x2="920" y2="392" stroke="rgba(244,244,245,0.2)" stroke-width="1"/>
+      <text x="696" y="362" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">TABLE</text>
+      <text x="696" y="383" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Teams</text>
+      <text x="696" y="414" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="904" y="414" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="696" y="438" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">name</text><text x="904" y="438" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="696" y="462" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ owner_id</text><text x="904" y="462" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <rect x="40" y="344" width="240" height="160" rx="8" fill="#09090b"/>
+      <rect x="40" y="344" width="240" height="160" rx="8" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <path d="M 40,392 V 352 Q 40,344 48,344 H 272 Q 280,344 280,352 V 392 Z" fill="rgba(244,244,245,0.05)"/>
+      <line x1="40" y1="392" x2="280" y2="392" stroke="rgba(244,244,245,0.2)" stroke-width="1"/>
+      <text x="56" y="362" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.14em">TABLE</text>
+      <text x="56" y="383" fill="#f4f4f5" font-size="18" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Team invites</text>
+      <text x="56" y="414" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace"># id</text><text x="264" y="414" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="56" y="438" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ team_id</text><text x="264" y="438" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+      <text x="56" y="462" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">email</text><text x="264" y="462" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">text</text>
+      <text x="56" y="486" fill="#f4f4f5" font-size="13" font-family="'Geist Mono', ui-monospace, monospace">→ invited_by</text><text x="264" y="486" fill="#9a9aa3" font-size="13" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="end">int</text>
+
+      <!-- Legend strip -->
+      <line x1="40" y1="576" x2="920" y2="576" stroke="rgba(244,244,245,0.14)" stroke-width="1"/>
+      <text x="40" y="598" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.18em">LEGEND</text>
+      <rect x="40" y="612" width="20" height="14" rx="3" fill="rgba(255,138,31,0.05)" stroke="#ff8a1f" stroke-width="1.6"/>
+      <text x="68" y="624" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Central entity</text>
+      <rect x="196" y="612" width="20" height="14" rx="3" fill="#131316" stroke="rgba(244,244,245,0.6)" stroke-width="1.2"/>
+      <text x="224" y="624" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Table</text>
+      <text x="292" y="625" fill="#f4f4f5" font-size="14" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace">#</text>
+      <text x="310" y="624" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Primary key</text>
+      <text x="412" y="625" fill="#f4f4f5" font-size="14" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace">→</text>
+      <text x="432" y="624" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Foreign key</text>
+      <text x="536" y="625" fill="#f4f4f5" font-size="13" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace">1 · N · 0..1</text>
+      <text x="640" y="624" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Cardinality</text>
+      <text x="40" y="652" fill="#9a9aa3" font-size="13" font-family="'Plus Jakarta Sans', system-ui, sans-serif">owner_id (teams) and invited_by (team invites) also reference users.</text>
+    </svg>
+  </div>
+</body>
+</html>

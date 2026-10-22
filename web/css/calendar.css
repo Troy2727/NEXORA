@@ -1,0 +1,209 @@
+/* Calendar view */
+#view-calendar { display: grid; gap: 16px; }
+
+.cal-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cal-toolbar h2 { font-size: 20px; letter-spacing: -0.02em; }
+.cal-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cal-search { width: 240px; padding: 8px 12px; }
+.cal-actions .btn { gap: 4px; }
+
+.cal-body { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 16px; align-items: start; }
+.cal-side { display: grid; gap: 20px; }
+.cal-side-title { font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+
+/* Mini month */
+.mini-cal { padding: 14px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+.mini-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
+.mini-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; text-align: center; }
+.mini-labels { font-size: 11px; color: var(--faint); margin-bottom: 4px; }
+
+.mini-day {
+  position: relative;
+  padding: 6px 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: #d4d4d8;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mini-day:hover { background: rgba(255, 255, 255, 0.06); }
+.mini-day.other { color: var(--faint); }
+.mini-day.in-week { background: rgba(255, 138, 31, 0.1); }
+.mini-day.today { background: var(--grad); color: #1a0d00; font-weight: 800; }
+
+.mini-day.has-due::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.mini-day.today.has-due::after { background: #1a0d00; }
+
+/* Next up */
+.next-up { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+.next-up li:not(.empty) {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.next-up input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--orange); cursor: pointer; flex: none; }
+.next-up-text { display: grid; gap: 2px; min-width: 0; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+.next-up-title { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.next-up-due { font-size: 12px; color: var(--faint); }
+.cal-overdue { color: #ff7b72 !important; }
+
+/* Week grid */
+.week-wrap {
+  position: relative;
+  max-height: 620px;
+  overflow: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.week { min-width: 680px; }
+
+.week-head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 56px repeat(7, minmax(0, 1fr));
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.week-day { display: grid; justify-items: center; padding: 10px 0; font-size: 12px; color: var(--muted); }
+.week-day b { font-size: 18px; color: var(--text); line-height: 1.2; }
+.week-day.today b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--grad); color: #1a0d00; }
+
+.week-body { position: relative; display: grid; grid-template-columns: 56px repeat(7, minmax(0, 1fr)); }
+.week-hours { position: relative; }
+.week-hours span { position: absolute; right: 8px; transform: translateY(-50%); font-size: 11px; color: var(--faint); }
+.week-hours span:first-child { transform: none; }
+
+.week-col {
+  position: relative;
+  border-left: 1px solid var(--border);
+  background-image: repeating-linear-gradient(to bottom, var(--border) 0 1px, transparent 1px 48px);
+}
+
+.week-col.today { background-color: rgba(255, 138, 31, 0.04); }
+
+.now-line { position: absolute; left: 0; right: 0; z-index: 2; height: 2px; background: var(--red); }
+.now-line::before { content: ""; position: absolute; left: -4px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+
+.evt {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 1px;
+  height: 42px;
+  padding: 5px 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid;
+  text-align: left;
+  cursor: pointer;
+}
+
+.evt:hover { filter: brightness(1.15); }
+.evt-title { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.evt-time { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Side-by-side chips are narrow: give the title two lines; the time stays in the tooltip. */
+.evt-narrow { padding: 4px 5px; }
+.evt-narrow .evt-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.evt-narrow .evt-time { display: none; }
+
+/* Hover or keyboard focus expands a narrow chip so the whole title and time can be read. */
+.evt-narrow:hover, .evt-narrow:focus-visible {
+  z-index: 5;
+  width: auto !important;
+  min-width: 160px;
+  height: auto;
+  min-height: 42px;
+  background-color: var(--surface-2);
+}
+.evt-narrow:hover .evt-title, .evt-narrow:focus-visible .evt-title { display: block; -webkit-line-clamp: unset; overflow-wrap: normal; }
+.evt-narrow:hover .evt-time, .evt-narrow:focus-visible .evt-time { display: block; }
+
+.evt-gray { color: #e4e4e7; background: linear-gradient(90deg, rgba(142, 142, 147, 0.28), rgba(142, 142, 147, 0.12)); border-color: rgba(142, 142, 147, 0.45); }
+.evt-orange { color: #ffc078; background: linear-gradient(90deg, rgba(255, 138, 31, 0.3), rgba(255, 106, 0, 0.12)); border-color: rgba(255, 138, 31, 0.55); }
+.evt-green { color: #7ee08f; background: linear-gradient(90deg, rgba(52, 199, 89, 0.26), rgba(52, 199, 89, 0.1)); border-color: rgba(52, 199, 89, 0.5); }
+.evt-green .evt-title { text-decoration: line-through; }
+.evt-overdue { border-color: var(--red); box-shadow: 0 0 0 1px var(--red) inset; }
+
+.week-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Footer */
+.cal-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cal-footer span { display: inline-flex; align-items: center; gap: 6px; }
+.cal-footer b { color: var(--text); }
+.cal-footer .btn { margin-left: auto; }
+
+/* Due date on board cards */
+.due { justify-self: start; font-size: 12px; font-weight: 600; color: var(--orange); }
+.due.overdue { color: #ff7b72; }
+
+@media (max-width: 1100px) {
+  .cal-body { grid-template-columns: 1fr; }
+  .cal-side { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .cal-search { width: 100%; }
+  .cal-actions { width: 100%; }
+  .cal-btn-label { display: none; }
+}

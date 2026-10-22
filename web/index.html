@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXORA</title>
+  <meta name="description" content="NEXORA is a task manager that moves every task from idea to done.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="nav-wrap">
+    <nav class="nav">
+      <a class="logo" href="index.html"><img src="assets/logo.svg" alt=""><img class="wordmark" src="assets/wordmark.svg" alt="NEXORA"></a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+      </div>
+      <div class="nav-actions">
+        <a class="nav-signin" href="auth.html">Sign in</a>
+        <a class="btn btn-primary btn-sm" href="auth.html#register">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span class="eyebrow-dot"></span>Task manager for focused teams</p>
+      <h1>Move every task from<br><span class="grad-text">idea to done.</span></h1>
+      <p class="lede">NEXORA keeps your work on one board. Capture tasks, push them forward with clear status rules, and see how your week is going at a glance.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="auth.html#register">Get started free</a>
+        <a class="btn" href="#workflow">See how it works</a>
+      </div>
+      <ul class="proof">
+        <li><svg class="icon"><use href="assets/icons.svg#check"/></svg>Free to use</li>
+        <li><svg class="icon"><use href="assets/icons.svg#code"/></svg><a href="https://github.com/Troy2727/NEXORA" target="_blank" rel="noopener">Code on GitHub</a></li>
+        <li><svg class="icon"><use href="assets/icons.svg#shield-check"/></svg>Email-verified accounts</li>
+      </ul>
+
+      <div class="mockup" aria-hidden="true">
+        <div class="mockup-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="mockup-url">app.nexora / board</span>
+        </div>
+        <div class="mockup-board">
+          <div class="m-col">
+            <p class="m-head"><span class="dot tone-gray"></span>To do <b>3</b></p>
+            <div class="m-card"><span class="pill tone-gray">To do</span><p>Draft Q4 roadmap</p></div>
+            <div class="m-card"><span class="pill tone-gray">To do</span><p>Review onboarding copy</p></div>
+          </div>
+          <div class="m-col">
+            <p class="m-head"><span class="dot tone-orange"></span>In progress <b>2</b></p>
+            <div class="m-card active"><span class="pill tone-orange">In progress</span><p>Design system update</p><span class="m-bar"><i style="width:65%"></i></span></div>
+            <div class="m-card"><span class="pill tone-orange">In progress</span><p>API rate limiting</p></div>
+          </div>
+          <div class="m-col">
+            <p class="m-head"><span class="dot tone-green"></span>Completed <b>5</b></p>
+            <div class="m-card done"><span class="pill tone-green">Completed</span><p>Team standup notes</p></div>
+            <div class="m-card done"><span class="pill tone-green">Completed</span><p>Ship login flow</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <p class="kicker">Features</p>
+      <h2>Everything a task needs. Nothing it doesn't.</h2>
+      <div class="features">
+        <article class="feature">
+          <span class="f-icon"><svg class="icon"><use href="assets/icons.svg#arrows"/></svg></span>
+          <h3>Status flow with guardrails</h3>
+          <p>Tasks move between To do, In progress and Completed only along allowed paths, so your board always tells the truth.</p>
+        </article>
+        <article class="feature">
+          <span class="f-icon"><svg class="icon"><use href="assets/icons.svg#pie-chart"/></svg></span>
+          <h3>Overview at a glance</h3>
+          <p>See what's left, what's moving and your completion rate the moment you sign in.</p>
+        </article>
+        <article class="feature">
+          <span class="f-icon"><svg class="icon"><use href="assets/icons.svg#shield-check"/></svg></span>
+          <h3>Verified accounts</h3>
+          <p>Email verification on sign-up and token-based sessions keep your workspace yours.</p>
+        </article>
+        <article class="feature">
+          <span class="f-icon"><svg class="icon"><use href="assets/icons.svg#code"/></svg></span>
+          <h3>Open API underneath</h3>
+          <p>Every action in the app is a documented REST endpoint, ready for your scripts and integrations.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <p class="kicker">Workflow</p>
+      <h2>Three states. Clear rules.</h2>
+      <div class="flow">
+        <div class="flow-step step-gray">
+          <span class="pill tone-gray">To do</span>
+          <p>New work lands here. Start it, or close it straight away if it's already done.</p>
+        </div>
+        <svg class="icon flow-arrow" aria-hidden="true"><use href="assets/icons.svg#arrow-right"/></svg>
+        <div class="flow-step step-orange">
+          <span class="pill tone-orange">In progress</span>
+          <p>Work that's moving. Finish it, or send it back to the queue.</p>
+        </div>
+        <svg class="icon flow-arrow" aria-hidden="true"><use href="assets/icons.svg#arrow-right"/></svg>
+        <div class="flow-step step-green">
+          <span class="pill tone-green">Completed</span>
+          <p>Done and counted. Reopen it if something comes back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Ready to clear your board?</h2>
+      <p class="muted">Create an account and add your first task in under a minute.</p>
+      <a class="btn btn-primary" href="auth.html#register">Create your account</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo" href="index.html"><img src="assets/logo.svg" alt=""><img class="wordmark" src="assets/wordmark.svg" alt="NEXORA"></a>
+    <p class="muted small">© 2026 NEXORA. All rights reserved.</p>
+  </footer>
+</body>
+</html>

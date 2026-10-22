@@ -1,0 +1,48 @@
+# Local stack: the API plus PostgreSQL, Redis and MailCatcher (a fake inbox at
+# http://localhost:1080). Values come from .env; copy .env.example to start.
+x-healthcheck: &healthcheck
+  interval: 5s
+  timeout: 5s
+  retries: 5
+
+services:
+  api:
+    build: .
+    env_file: .env
+    ports: ["8000:8000"]
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    restart: unless-stopped
+
+  db:
+    image: postgres:14
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DB_LOGIN}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports: ["5432:5432"]
+    volumes: [db_data:/var/lib/postgresql/data]
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD-SHELL", "pg_isready -U ${DB_LOGIN} -d ${DB_NAME}"]
+    restart: unless-stopped
+
+  redis:
+    image: redis:8.2.1
+    volumes: [redis_data:/data]
+    ports: ["6379:6379"]
+    healthcheck:
+      <<: *healthcheck
+      test: ["CMD", "redis-cli", "ping"]
+    restart: unless-stopped
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports: ["1080:1080", "1025:1025"]
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  redis_data:

@@ -1,0 +1,51 @@
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(520px 280px at 50% 0%, rgba(255, 122, 0, 0.22), transparent 70%),
+    var(--bg);
+}
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 40px 16px;
+}
+
+.auth-card { width: 100%; max-width: 420px; display: grid; gap: 18px; padding: 24px; }
+
+.tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 12px; background: var(--surface-2); }
+
+.tab {
+  padding: 9px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset; }
+
+.panel { display: grid; gap: 14px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.code { letter-spacing: 0.4em; font-size: 20px; text-align: center; font-weight: 700; }
+
+.link {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  justify-self: center;
+}
+
+.link:hover { color: var(--orange); }
+
+@media (max-width: 420px) {
+  .row { grid-template-columns: 1fr; }
+}

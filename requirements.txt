@@ -1,0 +1,11 @@
+# Runtime dependencies for the Vercel deployment; keep in sync with pyproject.toml.
+alembic==1.14.1
+fastapi[standard]==0.115.7
+redis[hiredis]==6.1.0
+pydantic-settings==2.5.2
+sqlalchemy==2.0.37
+asyncpg==0.30.0
+python-jose==3.4.0
+passlib==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.20

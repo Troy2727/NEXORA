@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api:
+    name: Lint, type-check and test the API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry and dependencies
+        run: |
+          pipx install poetry
+          poetry install --with dev,test --no-interaction
+
+      - name: Formatting (black, isort)
+        run: |
+          poetry run black --check .
+          poetry run isort --check-only .
+
+      - name: Lint (ruff)
+        run: poetry run ruff check .
+
+      - name: Types (pyright)
+        run: poetry run pyright
+
+      - name: Tests
+        run: poetry run pytest --cov --cov-report=term-missing

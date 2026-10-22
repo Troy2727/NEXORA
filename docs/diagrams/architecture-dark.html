@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA · System architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #09090b; color: #f4f4f5; min-height: 100vh;
+           display: flex; align-items: center; justify-content: center; padding: 3rem 2rem; }
+    .frame { max-width: 1200px; width: 100%; }
+    .eyebrow { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+               text-transform: uppercase; color: #b4b4bc; margin-bottom: 0.5rem; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: 2.5rem; font-weight: 400; letter-spacing: -0.02em;
+         line-height: 1.15; margin-bottom: 1.5rem; }
+    svg { width: 100%; min-width: 880px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Architecture · NEXORA</p>
+    <h1>System architecture</h1>
+    <svg viewBox="0 0 1000 468" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="architecture-dark-title architecture-dark-desc">
+      <title id="architecture-dark-title">NEXORA · System architecture</title>
+      <desc id="architecture-dark-desc">Architecture diagram showing the NEXORA web app calling the FastAPI service over REST with JWT, where routers pass requests to use cases that hold the business rules, repositories persist to PostgreSQL, and use cases store verification codes in Redis and send verification email over SMTP.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#b4b4bc"/></marker>
+        <marker id="arrow-accent" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#ff8a1f"/></marker>
+        <marker id="arrow-link" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#8fa8ff"/></marker>
+      </defs>
+      <rect width="100%" height="100%" fill="#09090b"/>
+
+      <!-- Zone: FastAPI service (drawn first) -->
+      <rect x="288" y="64" width="664" height="128" rx="10" fill="rgba(244,244,245,0.025)" stroke="rgba(244,244,245,0.18)" stroke-width="1"/>
+      <rect x="300" y="56" width="148" height="16" rx="3" fill="#09090b"/>
+      <text x="374" y="68" fill="#9a9aa3" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.16em">FASTAPI SERVICE</text>
+
+      <!-- Connectors (behind boxes) -->
+      <line x1="200" y1="132" x2="302" y2="132" stroke="#8fa8ff" stroke-width="1.6" marker-end="url(#arrow-link)"/>
+      <line x1="472" y1="132" x2="518" y2="132" stroke="#ff8a1f" stroke-width="1.8" marker-end="url(#arrow-accent)"/>
+      <line x1="704" y1="132" x2="750" y2="132" stroke="#ff8a1f" stroke-width="1.8" marker-end="url(#arrow-accent)"/>
+      <line x1="844" y1="168" x2="844" y2="262" stroke="#b4b4bc" stroke-width="1.6" marker-end="url(#arrow)"/>
+      <path d="M 580,168 V 212 Q 580,220 572,220 H 432 Q 424,220 424,228 V 262" fill="none" stroke="#b4b4bc" stroke-width="1.6" marker-end="url(#arrow)"/>
+      <line x1="628" y1="168" x2="628" y2="262" stroke="#b4b4bc" stroke-width="1.4" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+
+      <rect x="208" y="104" width="88" height="16" rx="3" fill="#09090b"/>
+      <text x="252" y="116" fill="#8fa8ff" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">REST · JWT</text>
+      <rect x="856" y="208" width="36" height="16" rx="3" fill="#09090b"/>
+      <text x="874" y="220" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">SQL</text>
+      <rect x="336" y="232" width="52" height="16" rx="3" fill="#09090b"/>
+      <text x="362" y="244" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">CODES</text>
+      <rect x="640" y="232" width="52" height="16" rx="3" fill="#09090b"/>
+      <text x="666" y="244" fill="#b4b4bc" font-size="12" font-weight="500" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">EMAIL</text>
+
+      <!-- Nodes -->
+      <rect x="40" y="96" width="160" height="72" rx="8" fill="#09090b"/>
+      <rect x="40" y="96" width="160" height="72" rx="8" fill="rgba(244,244,245,0.07)" stroke="#9a9aa3" stroke-width="1.2"/>
+      <rect x="50" y="106" width="36" height="16" rx="3" fill="none" stroke="#9a9aa3" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="68" y="118" fill="#9a9aa3" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">WEB</text>
+      <text x="120" y="142" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">NEXORA web app</text>
+      <text x="120" y="159" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">HTML · CSS · JS</text>
+      <rect x="304" y="96" width="168" height="72" rx="8" fill="#09090b"/>
+      <rect x="304" y="96" width="168" height="72" rx="8" fill="#131316" stroke="#f4f4f5" stroke-width="1.2"/>
+      <rect x="314" y="106" width="36" height="16" rx="3" fill="none" stroke="#f4f4f5" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="332" y="118" fill="#f4f4f5" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">API</text>
+      <text x="388" y="142" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">Routers</text>
+      <text x="388" y="159" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">auth·user·task·team</text>
+      <rect x="520" y="96" width="184" height="72" rx="8" fill="#09090b"/>
+      <rect x="520" y="96" width="184" height="72" rx="8" fill="rgba(255,138,31,0.12)" stroke="#ff8a1f" stroke-width="1.6"/>
+      <rect x="530" y="106" width="44" height="16" rx="3" fill="none" stroke="#ff8a1f" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="552" y="118" fill="#ff8a1f" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">CORE</text>
+      <text x="612" y="142" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">Use cases</text>
+      <text x="612" y="159" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">rules · permissions</text>
+      <rect x="752" y="96" width="184" height="72" rx="8" fill="#09090b"/>
+      <rect x="752" y="96" width="184" height="72" rx="8" fill="#131316" stroke="#f4f4f5" stroke-width="1.2"/>
+      <rect x="762" y="106" width="44" height="16" rx="3" fill="none" stroke="#f4f4f5" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="784" y="118" fill="#f4f4f5" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">DATA</text>
+      <text x="844" y="142" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">Repositories</text>
+      <text x="844" y="159" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">SQLAlchemy async</text>
+      <rect x="752" y="264" width="184" height="72" rx="8" fill="#09090b"/>
+      <rect x="752" y="264" width="184" height="72" rx="8" fill="rgba(244,244,245,0.05)" stroke="#b4b4bc" stroke-width="1.2"/>
+      <rect x="762" y="274" width="28" height="16" rx="3" fill="none" stroke="#b4b4bc" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="776" y="286" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">DB</text>
+      <text x="844" y="310" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">PostgreSQL 14</text>
+      <text x="844" y="327" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">users · tasks · teams</text>
+      <rect x="340" y="264" width="168" height="72" rx="8" fill="#09090b"/>
+      <rect x="340" y="264" width="168" height="72" rx="8" fill="rgba(244,244,245,0.05)" stroke="#b4b4bc" stroke-width="1.2"/>
+      <rect x="350" y="274" width="52" height="16" rx="3" fill="none" stroke="#b4b4bc" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="376" y="286" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">CACHE</text>
+      <text x="424" y="310" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">Redis</text>
+      <text x="424" y="327" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">verification codes</text>
+      <rect x="544" y="264" width="168" height="72" rx="8" fill="#09090b"/>
+      <rect x="544" y="264" width="168" height="72" rx="8" fill="rgba(244,244,245,0.03)" stroke="rgba(244,244,245,0.35)" stroke-width="1.2"/>
+      <rect x="554" y="274" width="44" height="16" rx="3" fill="none" stroke="#9a9aa3" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="576" y="286" fill="#9a9aa3" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.1em">MAIL</text>
+      <text x="628" y="310" fill="#f4f4f5" font-size="16" font-weight="700" font-family="'Plus Jakarta Sans', system-ui, sans-serif" text-anchor="middle">SMTP</text>
+      <text x="628" y="327" fill="#b4b4bc" font-size="12" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">MailCatcher in dev</text>
+
+      <!-- Legend strip -->
+      <line x1="40" y1="368" x2="960" y2="368" stroke="rgba(244,244,245,0.14)" stroke-width="1"/>
+      <text x="40" y="390" fill="#b4b4bc" font-size="10" font-weight="600" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.18em">LEGEND</text>
+      <rect x="40" y="404" width="20" height="14" rx="3" fill="rgba(255,138,31,0.12)" stroke="#ff8a1f" stroke-width="1.2"/>
+      <text x="68" y="416" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Core logic</text>
+      <rect x="176" y="404" width="20" height="14" rx="3" fill="#131316" stroke="#f4f4f5" stroke-width="1.2"/>
+      <text x="204" y="416" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Service layer</text>
+      <rect x="332" y="404" width="20" height="14" rx="3" fill="rgba(244,244,245,0.05)" stroke="#b4b4bc" stroke-width="1.2"/>
+      <text x="360" y="416" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Data store</text>
+      <rect x="468" y="404" width="20" height="14" rx="3" fill="rgba(244,244,245,0.03)" stroke="rgba(244,244,245,0.35)" stroke-width="1.2"/>
+      <text x="496" y="416" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">External service</text>
+      <rect x="652" y="404" width="20" height="14" rx="3" fill="rgba(244,244,245,0.07)" stroke="#9a9aa3" stroke-width="1.2"/>
+      <text x="680" y="416" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Client</text>
+      <line x1="40" y1="439" x2="76" y2="439" stroke="#8fa8ff" stroke-width="1.6" marker-end="url(#arrow-link)"/>
+      <text x="84" y="444" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">HTTP request</text>
+      <line x1="232" y1="439" x2="268" y2="439" stroke="#ff8a1f" stroke-width="1.6" marker-end="url(#arrow-accent)"/>
+      <text x="276" y="444" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Request path</text>
+      <line x1="424" y1="439" x2="460" y2="439" stroke="#b4b4bc" stroke-width="1.6" marker-end="url(#arrow)"/>
+      <text x="468" y="444" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Internal call</text>
+      <line x1="612" y1="439" x2="648" y2="439" stroke="#b4b4bc" stroke-width="1.6" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+      <text x="656" y="444" fill="#b4b4bc" font-size="13" font-weight="500" font-family="'Plus Jakarta Sans', system-ui, sans-serif">Async (email)</text>
+    </svg>
+  </div>
+</body>
+</html>

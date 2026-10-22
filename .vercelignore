@@ -1,0 +1,12 @@
+# The API is deployed from the repo root; the web app is its own Vercel project (web/).
+web/
+docs/
+tests/
+.github/
+Dockerfile
+docker-compose.yml
+entrypoint.sh
+gunicorn.conf.py
+render.yaml
+pyproject.toml
+poetry.lock

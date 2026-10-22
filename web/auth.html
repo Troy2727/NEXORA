@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · NEXORA</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <main class="auth">
+    <a class="logo" href="index.html"><img src="assets/logo.svg" alt=""><img class="wordmark" src="assets/wordmark.svg" alt="NEXORA"></a>
+
+    <div class="card auth-card">
+      <div class="tabs" role="tablist">
+        <button class="tab" data-panel="login" role="tab">Sign in</button>
+        <button class="tab" data-panel="register" role="tab">Create account</button>
+      </div>
+
+      <p class="alert" id="message" hidden></p>
+
+      <form class="panel" id="login">
+        <div class="field"><label for="login-email">Email</label>
+          <input class="input" id="login-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="login-password">Password</label>
+          <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="btn btn-primary" type="submit">Sign in</button>
+        <button class="link" type="button" data-panel="verify">Haven't verified your email yet?</button>
+      </form>
+
+      <form class="panel" id="register" hidden>
+        <div class="row">
+          <div class="field"><label for="reg-first">First name</label>
+            <input class="input" id="reg-first" name="first_name" autocomplete="given-name"></div>
+          <div class="field"><label for="reg-last">Last name</label>
+            <input class="input" id="reg-last" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <div class="field"><label for="reg-email">Email</label>
+          <input class="input" id="reg-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="reg-password">Password</label>
+          <input class="input" id="reg-password" name="password" type="password" autocomplete="new-password" required></div>
+        <button class="btn btn-primary" type="submit">Create account</button>
+      </form>
+
+      <form class="panel" id="verify" hidden>
+        <p class="muted small">Enter the 6-digit code we emailed you. Codes expire after a minute, so send a new one if needed.</p>
+        <div class="field"><label for="verify-email">Email</label>
+          <input class="input" id="verify-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="verify-code">Verification code</label>
+          <input class="input code" id="verify-code" name="code" inputmode="numeric" pattern="\d{6}" maxlength="6" autocomplete="one-time-code" required></div>
+        <button class="btn btn-primary" type="submit">Verify email</button>
+        <button class="btn" type="button" id="send-code">Send code</button>
+      </form>
+    </div>
+
+    <p class="muted small"><a href="index.html"><svg class="icon"><use href="assets/icons.svg#arrow-left"/></svg> Back to home</a></p>
+  </main>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

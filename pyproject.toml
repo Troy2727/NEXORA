@@ -1,0 +1,90 @@
+[tool.poetry]
+name = "nexora"
+version = "1.0.0"
+description = "NEXORA task manager API (FastAPI + PostgreSQL)"
+authors = ["Alex Mieses"]
+readme = "README.md"
+package-mode = false
+
+# Runtime pins; requirements.txt mirrors these for the Vercel and Docker builds.
+[tool.poetry.dependencies]
+python = "3.11.*"
+fastapi = { version = "0.115.7", extras = ["standard"] }
+pydantic-settings = "2.5.2"
+sqlalchemy = "2.0.37"
+asyncpg = "0.30.0"
+alembic = "1.14.1"
+redis = { version = "6.1.0", extras = ["hiredis"] }
+python-jose = "3.4.0"
+passlib = "1.7.4"
+bcrypt = "4.0.1"  # 4.1+ breaks passlib 1.7.4's bcrypt version check
+python-multipart = "0.0.20"
+gunicorn = { version = "23.0.0", extras = ["gevent"] }
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+isort = "*"
+ruff = "*"
+pyright = { version = "*", extras = ["nodejs"] }
+pre-commit = "*"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+aiosqlite = "*"
+factory-boy = "*"
+faker = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# --- Formatting -------------------------------------------------------------
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+py_version = 311
+skip_gitignore = true
+
+# --- Linting ----------------------------------------------------------------
+
+[tool.ruff.lint]
+# Correctness and security first, then style rules that keep the code uniform.
+select = [
+    "F", "E", "W", "I", "N",           # pyflakes, pycodestyle, import order, naming
+    "B", "S", "TRY", "EM", "RSE",      # bugs, security (bandit), exception hygiene
+    "PL", "PERF", "FURB", "C4", "SIM", # pylint, performance, simpler idioms
+    "RET", "PIE", "PT", "T20", "PGH",  # returns, pytest style, no print, typed ignores
+    "LOG", "G", "FAST",                # logging, FastAPI
+]
+exclude = ["db/alembic"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests assert, and use throwaway passwords and many fixtures on purpose.
+"tests/**" = ["S101", "S105", "S106", "S107", "PLR0913", "PLR2004"]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+ignore = ["db/alembic"]
+
+# --- Tests ------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+omit = ["tests/*", "db/alembic/*"]

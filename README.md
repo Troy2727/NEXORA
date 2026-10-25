@@ -413,8 +413,4 @@ profile photos, account settings and every team permission rule.
 
 Built by **Alex Mieses** ([@Troy2727](https://github.com/Troy2727)).
 
-NEXORA began as a fork of [task-manager](https://github.com/musashimiyomoto/task-manager), a small FastAPI
-starter by Iosif Mazan. The backend has since been rewritten, and the web app, teams, chat, ownership rules,
-tests and deployment were built for NEXORA.
-
 Released under the [MIT License](LICENSE).

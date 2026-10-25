@@ -133,6 +133,10 @@ svg.wires {
   border-color: var(--orange) !important;
   background: linear-gradient(180deg, #2a1707, #1a1009) !important;
 }
+.done {
+  border-color: #34c759 !important;
+  background: linear-gradient(180deg, #0f2416, #0b1a10) !important;
+}
 .group-label {
   position: absolute;
   font-family: var(--font-mono);
@@ -179,6 +183,12 @@ svg.wires {
 }
 .table .row + .row {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.table .row .pk {
+  color: var(--orange);
+}
+.table .row .fk {
+  color: #ffb020;
 }
 .table .row .type {
   margin-left: auto;

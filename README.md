@@ -230,6 +230,13 @@ The animated diagrams are HyperFrames compositions in `docs/diagrams/composition
 
 ### Task lifecycle
 
+![NEXORA task lifecycle: a new task starts in To do (created); Start moves it to In progress; Complete moves To do or In progress to Done (completed); Move to to-do sends In progress back; Reopen sends Done back to To do.](docs/diagrams/renders/task-lifecycle.gif)
+
+<sub>Click the diagram to see it full size.</sub>
+
+<details>
+<summary>Editable Mermaid version</summary>
+
 ```mermaid
 stateDiagram-v2
     direction LR
@@ -241,9 +248,18 @@ stateDiagram-v2
     completed --> created: Reopen
 ```
 
+</details>
+
 Transitions are enforced by the API (`PATCH /task/transitions/{id}/{status}`); anything else returns `400`.
 
 ### Sign-up and verification
+
+![NEXORA sign-up: the user creates an account in the web app, which registers with the API and asks for a code; the API stores a 6-digit code in Redis and emails it; the user enters the code, the web app verifies it and logs in, and the API returns a JWT used for later requests.](docs/diagrams/renders/signup-flow.gif)
+
+<sub>Click the diagram to see it full size.</sub>
+
+<details>
+<summary>Editable Mermaid version</summary>
 
 ```mermaid
 sequenceDiagram
@@ -265,6 +281,8 @@ sequenceDiagram
     A-->>W: JWT access token
     W->>A: Authenticated requests (Bearer token)
 ```
+
+</details>
 
 ## Tech stack
 

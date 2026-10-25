@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1600, height=1150" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../diagram.css" />
+  </head>
+  <body>
+    <div id="signup-flow" data-composition-id="signup-flow" data-start="0" data-duration="14" data-width="1600" data-height="1150">
+      <script src="../diagram.js"></script>
+      <script>
+        const { ORANGE, YELLOW, GREEN } = NexoraDiagram;
+        window.__timelines["signup-flow"] = NexoraDiagram.sequence(document.getElementById("signup-flow"), "Sign-up and verification", {
+          lanes: [
+            { x: 130, w: 220, tag: "ACTOR", title: "User" },
+            { x: 400, w: 260, tag: "BROWSER", title: "Web app" },
+            { x: 900, w: 280, tag: "FASTAPI", title: "API" },
+            { x: 1200, w: 220, tag: "CACHE", title: "Redis" },
+            { x: 1470, w: 220, tag: "SMTP", title: "Mail" },
+          ],
+          steps: [
+            { from: 0, to: 1, y: 340, label: "Create account", color: YELLOW },
+            { from: 1, to: 2, y: 404, label: "POST /auth/register", color: ORANGE },
+            { from: 1, to: 2, y: 468, label: "POST /auth/send/{email}/code", color: ORANGE },
+            { from: 2, to: 3, y: 532, label: "Store code", sub: "6 digits · short TTL" },
+            { from: 2, to: 4, y: 614, label: "Email the code" },
+            { from: 0, to: 1, y: 678, label: "Enter code", color: YELLOW },
+            { from: 1, to: 2, y: 742, label: "POST /auth/verify/{email}/{code}", color: ORANGE },
+            { from: 2, to: 3, y: 806, label: "Check code" },
+            { from: 1, to: 2, y: 870, label: "POST /auth/login", color: ORANGE },
+            { from: 2, to: 1, y: 934, label: "JWT access token", color: GREEN, dashed: true },
+            { from: 1, to: 2, y: 998, label: "Authenticated requests", sub: "Bearer token", color: ORANGE },
+          ],
+          end: 1050,
+        });
+      </script>
+    </div>
+  </body>
+</html>

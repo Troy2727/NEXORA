@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1600, height=1150" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../diagram.css" />
+  </head>
+  <body>
+    <div id="task-lifecycle" data-composition-id="task-lifecycle" data-start="0" data-duration="10" data-width="1600" data-height="1150">
+      <script src="../diagram.js"></script>
+      <script>
+        const mono = (s) => `<span style="font-family: var(--font-mono)">${s}</span>`;
+        window.__timelines["task-lifecycle"] = NexoraDiagram.boxes(document.getElementById("task-lifecycle"), "Task lifecycle", {
+          dots: [{ x: 300, y: 390 }],
+          nodes: [
+            { x: 200, y: 590, w: 280, h: 150, title: "To do", sub: mono("created") },
+            { x: 700, y: 590, w: 300, h: 150, title: "In progress", sub: mono("in_progress"), core: true },
+            { x: 1240, y: 590, w: 280, h: 150, title: "Done", sub: mono("completed"), done: true },
+          ],
+          links: [
+            { d: "M300 408 L300 584", color: NexoraDiagram.ORANGE, label: "create task", lx: 282, ly: 500, anchor: "end" },
+            { d: "M480 640 L694 640", color: NexoraDiagram.ORANGE, label: "Start", lx: 587, ly: 622 },
+            { d: "M1000 665 L1234 665", color: NexoraDiagram.ORANGE, label: "Complete", lx: 1117, ly: 647 },
+            { d: "M420 590 L420 470 L1380 470 L1380 584", color: NexoraDiagram.ORANGE, label: "Complete", lx: 900, ly: 452 },
+            { d: "M700 700 L486 700", label: "Move to to-do", lx: 593, ly: 736 },
+            { d: "M1380 740 L1380 870 L340 870 L340 746", label: "Reopen", lx: 860, ly: 852 },
+          ],
+        });
+      </script>
+    </div>
+  </body>
+</html>

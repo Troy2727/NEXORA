@@ -6,7 +6,8 @@ window.NexoraDiagram =
   (function () {
     const SVG_NS = "http://www.w3.org/2000/svg";
     const ORANGE = "#ff8a1f";
-    const BLUE = "#8b9cff";
+    const YELLOW = "#ffd54a";
+    const GREEN = "#34c759";
     const GRAY = "#d4d4d8";
     const GLOW_ON = "drop-shadow(0 0 10px rgba(255, 138, 31, 0.95))";
     const GLOW_OFF = "drop-shadow(0 0 0px rgba(255, 138, 31, 0))";
@@ -136,7 +137,7 @@ window.NexoraDiagram =
     }
 
     /** Boxes and arrows at fixed positions, with an optional dashed group around some of them. */
-    function boxes(root, title, { groups = [], nodes, links }) {
+    function boxes(root, title, { groups = [], nodes, links, dots = [] }) {
       const f = frame(root, title);
       const groupEls = groups.map((g) => {
         const rect = el("rect", {
@@ -147,10 +148,12 @@ window.NexoraDiagram =
         return [rect, name];
       });
       const nodeEls = nodes.map((n) =>
-        html(root, `node${n.core ? " core" : ""}`, { left: `${n.x}px`, top: `${n.y}px`, width: `${n.w}px`, height: `${n.h}px` },
-          `<div class="tag">${n.tag}</div><div class="title">${n.title}</div><div class="sub">${n.sub}</div>`)
+        html(root, `node${n.core ? " core" : ""}${n.done ? " done" : ""}`, { left: `${n.x}px`, top: `${n.y}px`, width: `${n.w}px`, height: `${n.h}px` },
+          `${n.tag ? `<div class="tag">${n.tag}</div>` : ""}<div class="title">${n.title}</div><div class="sub">${n.sub}</div>`)
       );
-      f.tl.fromTo(groupEls.flat(), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.4);
+      const dotEls = dots.map((d) => el("circle", { cx: d.x, cy: d.y, r: 16, fill: "#fafafa" }, f.svg));
+      if (groupEls.length) f.tl.fromTo(groupEls.flat(), { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.4);
+      if (dotEls.length) f.tl.fromTo(dotEls, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4 }, 0.5);
       f.tl.fromTo(nodeEls, { opacity: 0, y: 16, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.18, ease: "power2.out" }, 0.6);
 
       let t = 0.6 + nodes.length * 0.18 + 0.6;
@@ -169,7 +172,9 @@ window.NexoraDiagram =
     function tables(root, title, caption, tableDefs, links) {
       const f = frame(root, title, caption);
       const cards = tableDefs.map((t) => {
-        const rows = t.rows.map(([col, type]) => `<div class="row">${col}<span class="type">${type}</span></div>`).join("");
+        // "# " marks a primary key and "→ " a foreign key; both markers get the accent colors.
+        const mark = (col) => col.replace(/^# /, '<span class="pk">#</span> ').replace(/^→ /, '<span class="fk">→</span> ');
+        const rows = t.rows.map(([col, type]) => `<div class="row">${mark(col)}<span class="type">${type}</span></div>`).join("");
         return html(root, `table${t.core ? " core" : ""}`, { left: `${t.x}px`, top: `${t.y}px`, width: `${t.w}px` },
           `<div class="head"><div class="tag">${t.tag || "TABLE"}</div><div class="name">${t.name}</div></div>${rows}`);
       });
@@ -187,5 +192,37 @@ window.NexoraDiagram =
       return finish(f);
     }
 
-    return { boxes, tables, ORANGE, BLUE, GRAY };
+    /** Sequence diagram: lane boxes on top, dashed lifelines, numbered arrows between lanes. */
+    function sequence(root, title, { lanes, steps, end }) {
+      const f = frame(root, title);
+      const tl = f.tl;
+      const LANE_TOP = 180, LANE_BOTTOM = 290;
+      const nodes = lanes.map((lane) =>
+        html(root, "node", { left: `${lane.x - lane.w / 2}px`, top: `${LANE_TOP}px`, width: `${lane.w}px`, height: `${LANE_BOTTOM - LANE_TOP}px` },
+          `<div class="tag">${lane.tag}</div><div class="title">${lane.title}</div>`)
+      );
+      const lifelines = lanes.map((lane) =>
+        el("line", { x1: lane.x, y1: LANE_BOTTOM, x2: lane.x, y2: end, stroke: "#3f3f46", "stroke-width": 2, "stroke-dasharray": "4 7" }, f.svg)
+      );
+      tl.fromTo(nodes, { opacity: 0, y: 16, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" }, 0.4);
+      tl.fromTo(lifelines, { attr: { y2: LANE_BOTTOM } }, { attr: { y2: end }, duration: 0.8, ease: "power1.inOut" }, 1.1);
+
+      let t = 2.0;
+      steps.forEach((s, i) => {
+        const x1 = lanes[s.from].x, x2 = lanes[s.to].x, dir = Math.sign(x2 - x1);
+        const duration = Math.min(0.9, 0.5 * (Math.abs(x2 - x1) / 400));
+        wire(f, `M${x1 + dir * 6} ${s.y} L${x2 - dir * 4} ${s.y}`, { color: s.color || GRAY, dashed: s.dashed }, t, duration);
+        const mid = (x1 + x2) / 2;
+        const text = el("text", { x: mid, y: s.y - 16, "text-anchor": "middle", fill: "#f4f4f5", "font-family": "JetBrains Mono", "font-size": 23, "font-weight": 500 }, f.svg);
+        el("tspan", { fill: ORANGE, "font-weight": 700 }, text, `${i + 1}  `);
+        el("tspan", {}, text, s.label);
+        const texts = [text];
+        if (s.sub) texts.push(...label(f, s.sub, mid, s.y + 32, { fill: "#c4c4cc", size: 20, spacing: "0" }));
+        glowIn(f, texts, t + duration * 0.6);
+        t += duration + 0.3;
+      });
+      return finish(f);
+    }
+
+    return { boxes, tables, sequence, ORANGE, YELLOW, GREEN, GRAY };
   })();

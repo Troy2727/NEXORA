@@ -136,10 +136,14 @@ and, for verification emails, `SMTP_HOST`, `SMTP_PORT` (465), `SMTP_SSL` (true),
 
 ## Architecture
 
+<a href="docs/diagrams/architecture.png">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/architecture-dark.png">
   <img src="docs/diagrams/architecture.png" alt="NEXORA architecture: the web app calls FastAPI routers over REST with JWT; routers pass requests to use cases (business rules), which use repositories to reach PostgreSQL, store verification codes in Redis and send email over SMTP." width="100%">
 </picture>
+</a>
+
+<sub>Click the diagram to see it full size.</sub>
 
 <details>
 <summary>Editable Mermaid version</summary>
@@ -167,10 +171,14 @@ and a small API client.
 
 ### Data model
 
+<a href="docs/diagrams/data-model.png">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/data-model-dark.png">
   <img src="docs/diagrams/data-model.png" alt="NEXORA data model: users own tasks, join at most one team through team members, and write messages; teams have members, send invites and contain messages." width="100%">
 </picture>
+</a>
+
+<sub>Click the diagram to see it full size.</sub>
 
 <details>
 <summary>Editable Mermaid version</summary>

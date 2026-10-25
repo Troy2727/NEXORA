@@ -1,0 +1,187 @@
+:root {
+  --ground: #09090b;
+  --card: #131316;
+  --card-top: #1b1b20;
+  --border: rgba(255, 255, 255, 0.2);
+  --ink: #f4f4f5;
+  --muted: #c4c4cc;
+  --dim: #a1a1aa;
+  --orange: #ff8a1f;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1600px;
+  height: 1150px;
+  overflow: hidden;
+  background: var(--ground);
+}
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 1600px;
+  height: 1150px;
+  overflow: hidden;
+  font-family: var(--font-display);
+  color: var(--ink);
+  background:
+    radial-gradient(1000px 650px at 10% -14%, rgba(255, 138, 31, 0.16), transparent 62%),
+    radial-gradient(900px 600px at 106% 112%, rgba(255, 106, 0, 0.1), transparent 60%),
+    var(--ground);
+}
+.scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+}
+.header {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.header svg {
+  width: 66px;
+  height: 66px;
+}
+.header h1 {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+.caption {
+  position: absolute;
+  top: 132px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 26px;
+  color: var(--muted);
+}
+.caption b {
+  color: var(--orange);
+  font-weight: 700;
+}
+.footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--dim);
+}
+svg.wires {
+  position: absolute;
+  inset: 0;
+  width: 1600px;
+  height: 1150px;
+  overflow: visible;
+}
+.tag {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+.core .tag {
+  color: var(--orange);
+}
+.node {
+  position: absolute;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--card-top), var(--card));
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.node .tag {
+  padding: 2px 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: 7px;
+}
+.node.core .tag {
+  border-color: rgba(255, 138, 31, 0.6);
+}
+.node .title {
+  font-size: 34px;
+  font-weight: 700;
+}
+.node .sub {
+  font-size: 23px;
+  color: var(--muted);
+}
+.core {
+  border-color: var(--orange) !important;
+  background: linear-gradient(180deg, #2a1707, #1a1009) !important;
+}
+.group-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+.table {
+  position: absolute;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.table .head {
+  height: 76px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 22px;
+  background: var(--card-top);
+  border-bottom: 1.5px solid var(--border);
+}
+.table.core .head {
+  background: #2a1707;
+  border-bottom-color: rgba(255, 138, 31, 0.55);
+}
+.table .name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.table .row {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 22px;
+  font-family: var(--font-mono);
+  font-size: 23px;
+}
+.table .row + .row {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.table .row .type {
+  margin-left: auto;
+  font-size: 20px;
+  color: var(--dim);
+}

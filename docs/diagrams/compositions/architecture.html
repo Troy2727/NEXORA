@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1600, height=1150" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../diagram.css" />
+  </head>
+  <body>
+    <div id="architecture" data-composition-id="architecture" data-start="0" data-duration="10" data-width="1600" data-height="1150">
+      <script src="../diagram.js"></script>
+      <script>
+        window.__timelines["architecture"] = NexoraDiagram.boxes(document.getElementById("architecture"), "NEXORA architecture", {
+          groups: [{ x1: 410, y1: 300, x2: 1555, y2: 610, label: "FASTAPI SERVICE" }],
+          nodes: [
+            { x: 35, y: 380, w: 290, h: 170, tag: "BROWSER", title: "Web app", sub: "HTML · CSS · JS" },
+            { x: 440, y: 380, w: 300, h: 170, tag: "API", title: "Routers", sub: "auth · user · task · team" },
+            { x: 815, y: 380, w: 300, h: 170, tag: "CORE", title: "Use cases", sub: "rules · permissions", core: true },
+            { x: 1190, y: 380, w: 300, h: 170, tag: "DATA", title: "Repositories", sub: "SQLAlchemy async" },
+            { x: 440, y: 770, w: 300, h: 170, tag: "CACHE", title: "Redis", sub: "verification codes" },
+            { x: 815, y: 770, w: 300, h: 170, tag: "MAIL", title: "SMTP", sub: "MailCatcher in dev" },
+            { x: 1190, y: 770, w: 300, h: 170, tag: "DB", title: "PostgreSQL 14", sub: "users · tasks · teams" },
+          ],
+          links: [
+            { d: "M325 465 L434 465", color: NexoraDiagram.BLUE, label: ["REST", "JWT"], lx: 368, ly: 418 },
+            { d: "M740 465 L809 465", color: NexoraDiagram.ORANGE },
+            { d: "M1115 465 L1184 465", color: NexoraDiagram.ORANGE },
+            { d: "M915 550 L915 650 L590 650 L590 764", label: "codes", lx: 752, ly: 634 },
+            { d: "M1015 550 L1015 764", dashed: true, label: "email", lx: 1032, ly: 700, anchor: "start" },
+            { d: "M1340 550 L1340 764", label: "SQL", lx: 1357, ly: 700, anchor: "start" },
+          ],
+        });
+      </script>
+    </div>
+  </body>
+</html>

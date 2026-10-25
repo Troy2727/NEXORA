@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1600, height=1150" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../diagram.css" />
+  </head>
+  <body>
+    <div id="data-model" data-composition-id="data-model" data-start="0" data-duration="13" data-width="1600" data-height="1150">
+      <script src="../diagram.js"></script>
+      <script>
+        window.__timelines["data-model"] = NexoraDiagram.tables(
+          document.getElementById("data-model"),
+          "NEXORA data model",
+          "<b>teams.owner_id</b> and <b>team_invites.invited_by</b> also point at users",
+          [
+            { name: "Tasks", x: 40, y: 190, w: 420, rows: [["# id", "int"], ["→ user_id", "int"], ["title", "text"], ["description", "text"], ["status", "enum"], ["due_at", "timestamp"]] },
+            { name: "Users", tag: "CENTRAL ENTITY", core: true, x: 590, y: 190, w: 420, rows: [["# id", "int"], ["email", "text"], ["hashed_password", "text"], ["first_name", "text"], ["last_name", "text"], ["avatar", "data url"], ["last_login", "timestamp"]] },
+            { name: "Team members", x: 1140, y: 190, w: 420, rows: [["# id", "int"], ["→ team_id", "int"], ["→ user_id", "int · unique"], ["role", "enum"]] },
+            { name: "Team invites", x: 40, y: 690, w: 420, rows: [["# id", "int"], ["→ team_id", "int"], ["email", "text"], ["→ invited_by", "int"]] },
+            { name: "Messages", x: 590, y: 690, w: 420, rows: [["# id", "int"], ["→ team_id", "int"], ["→ user_id", "int · null"], ["body", "text"]] },
+            { name: "Teams", x: 1140, y: 690, w: 420, rows: [["# id", "int"], ["name", "text"], ["→ owner_id", "int"]] },
+          ],
+          [
+            { d: "M590 228 L460 228", label: "OWNS", lx: 525, ly: 210, card: [["1", 576, 258], ["N", 474, 258]] },
+            { d: "M1010 228 L1140 228", label: "JOINS", lx: 1075, ly: 210, card: [["1", 1024, 258], ["0..1", 1098, 258]] },
+            { d: "M800 574 L800 690", label: "WRITES", lx: 818, ly: 640, anchor: "start", card: [["1", 780, 602], ["N", 780, 682]] },
+            { d: "M1350 442 L1350 690", label: "HAS", lx: 1368, ly: 574, anchor: "start", card: [["N", 1330, 472], ["1", 1330, 682]] },
+            { d: "M1140 728 L1010 728", label: "CONTAINS", lx: 1075, ly: 710, card: [["1", 1126, 758], ["N", 1024, 758]] },
+            { d: "M1350 898 L1350 990 L250 990 L250 942", label: "SENDS", lx: 800, ly: 974, card: [["1", 1372, 926], ["N", 230, 968]] },
+          ]
+        );
+      </script>
+    </div>
+  </body>
+</html>

@@ -198,7 +198,7 @@ window.NexoraDiagram =
       const tl = f.tl;
       const LANE_TOP = 180, LANE_BOTTOM = 290;
       const nodes = lanes.map((lane) =>
-        html(root, "node", { left: `${lane.x - lane.w / 2}px`, top: `${LANE_TOP}px`, width: `${lane.w}px`, height: `${LANE_BOTTOM - LANE_TOP}px` },
+        html(root, `node${lane.core ? " core" : ""}`, { left: `${lane.x - lane.w / 2}px`, top: `${LANE_TOP}px`, width: `${lane.w}px`, height: `${LANE_BOTTOM - LANE_TOP}px` },
           `<div class="tag">${lane.tag}</div><div class="title">${lane.title}</div>`)
       );
       const lifelines = lanes.map((lane) =>

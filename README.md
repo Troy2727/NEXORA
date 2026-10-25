@@ -427,7 +427,7 @@ profile photos, account settings and every team permission rule.
 - [ ] Real-time chat over WebSockets (currently refreshes every 5 seconds)
 - [ ] Storing time entries and goals on the server (currently saved in the browser)
 
-## Author
+## 👨‍💻 Author
 
 Built by **Alex Mieses** ([@Troy2727](https://github.com/Troy2727)).
 

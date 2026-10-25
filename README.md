@@ -138,7 +138,7 @@ and, for verification emails, `SMTP_HOST`, `SMTP_PORT` (465), `SMTP_SSL` (true),
 
 ![NEXORA architecture: the web app calls FastAPI routers over REST with JWT; routers pass requests to use cases (business rules), which use repositories to reach PostgreSQL, store verification codes in Redis and send email over SMTP.](docs/diagrams/renders/architecture.gif)
 
-<sub>Click the diagram to see it full size.</sub>
+<p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
 <details>
 <summary>Editable Mermaid version</summary>
@@ -168,7 +168,7 @@ and a small API client.
 
 ![NEXORA data model: users own tasks, join at most one team through team members, and write messages; teams have members, send invites and contain messages.](docs/diagrams/renders/data-model.gif)
 
-<sub>Click the diagram to see it full size.</sub>
+<p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
 <details>
 <summary>Editable Mermaid version</summary>
@@ -232,7 +232,7 @@ The animated diagrams are HyperFrames compositions in `docs/diagrams/composition
 
 ![NEXORA task lifecycle: a new task starts in To do (created); Start moves it to In progress; Complete moves To do or In progress to Done (completed); Move to to-do sends In progress back; Reopen sends Done back to To do.](docs/diagrams/renders/task-lifecycle.gif)
 
-<sub>Click the diagram to see it full size.</sub>
+<p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
 <details>
 <summary>Editable Mermaid version</summary>
@@ -256,7 +256,7 @@ Transitions are enforced by the API (`PATCH /task/transitions/{id}/{status}`); a
 
 ![NEXORA sign-up: the user creates an account in the web app, which registers with the API and asks for a code; the API stores a 6-digit code in Redis and emails it; the user enters the code, the web app verifies it and logs in, and the API returns a JWT used for later requests.](docs/diagrams/renders/signup-flow.gif)
 
-<sub>Click the diagram to see it full size.</sub>
+<p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
 <details>
 <summary>Editable Mermaid version</summary>

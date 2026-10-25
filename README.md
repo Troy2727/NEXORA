@@ -136,7 +136,7 @@ and, for verification emails, `SMTP_HOST`, `SMTP_PORT` (465), `SMTP_SSL` (true),
 
 ## Architecture
 
-![NEXORA architecture: the web app calls FastAPI routers over REST with JWT; routers pass requests to use cases (business rules), which use repositories to reach PostgreSQL, store verification codes in Redis and send email over SMTP.](docs/diagrams/renders/architecture.gif)
+![NEXORA architecture: the web app calls FastAPI routers over REST with JWT; routers pass requests to use cases (business rules), which use repositories to reach PostgreSQL, store verification codes in Redis and send email over SMTP.](docs/diagrams/renders/architecture.gif "Click to see full size")
 
 <p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
@@ -166,7 +166,7 @@ and a small API client.
 
 ### Data model
 
-![NEXORA data model: users own tasks, join at most one team through team members, and write messages; teams have members, send invites and contain messages.](docs/diagrams/renders/data-model.gif)
+![NEXORA data model: users own tasks, join at most one team through team members, and write messages; teams have members, send invites and contain messages.](docs/diagrams/renders/data-model.gif "Click to see full size")
 
 <p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
@@ -230,7 +230,7 @@ The animated diagrams are HyperFrames compositions in `docs/diagrams/composition
 
 ### Task lifecycle
 
-![NEXORA task lifecycle: a new task starts in To do (created); Start moves it to In progress; Complete moves To do or In progress to Done (completed); Move to to-do sends In progress back; Reopen sends Done back to To do.](docs/diagrams/renders/task-lifecycle.gif)
+![NEXORA task lifecycle: a new task starts in To do (created); Start moves it to In progress; Complete moves To do or In progress to Done (completed); Move to to-do sends In progress back; Reopen sends Done back to To do.](docs/diagrams/renders/task-lifecycle.gif "Click to see full size")
 
 <p align="center"><sub>Click the diagram to see it full size.</sub></p>
 
@@ -254,7 +254,7 @@ Transitions are enforced by the API (`PATCH /task/transitions/{id}/{status}`); a
 
 ### Sign-up and verification
 
-![NEXORA sign-up: the user creates an account in the web app, which registers with the API and asks for a code; the API stores a 6-digit code in Redis and emails it; the user enters the code, the web app verifies it and logs in, and the API returns a JWT used for later requests.](docs/diagrams/renders/signup-flow.gif)
+![NEXORA sign-up: the user creates an account in the web app, which registers with the API and asks for a code; the API stores a 6-digit code in Redis and emails it; the user enters the code, the web app verifies it and logs in, and the API returns a JWT used for later requests.](docs/diagrams/renders/signup-flow.gif "Click to see full size")
 
 <p align="center"><sub>Click the diagram to see it full size.</sub></p>
 

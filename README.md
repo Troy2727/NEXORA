@@ -431,4 +431,10 @@ profile photos, account settings and every team permission rule.
 
 Built by **Alex Mieses** ([@Troy2727](https://github.com/Troy2727)).
 
+Alex built NEXORA as a complete product, not just an API: a layered FastAPI backend on PostgreSQL, email
+verification through Redis and SMTP, and a dependency-free web app with a kanban board, calendar, reports,
+time tracking, goals and team chat. Ownership and team permission rules are enforced by the server and covered
+by tests, every push runs CI (tests, formatting, linting and type checks), and both the web app and the API
+are live on Vercel.
+
 Released under the [MIT License](LICENSE).

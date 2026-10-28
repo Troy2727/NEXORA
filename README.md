@@ -9,13 +9,29 @@
 A full-stack task manager with a FastAPI + PostgreSQL backend and a fast, dependency-free web dashboard:<br>
 kanban board, calendar, reports, time tracking, goals, team chat and per-user privacy built in.
 
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-336791.svg?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![Pyright](https://img.shields.io/badge/pyright-checked-informational.svg)](https://github.com/microsoft/pyright/)
+[![Python 3.11](https://img.shields.io/badge/Python%203.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI 0.115](https://img.shields.io/badge/FastAPI%200.115-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Pydantic 2](https://img.shields.io/badge/Pydantic%202-E92063?style=flat-square&logo=pydantic&logoColor=white)](https://docs.pydantic.dev)
+[![SQLAlchemy 2](https://img.shields.io/badge/SQLAlchemy%202-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org)
+[![Alembic](https://img.shields.io/badge/Alembic-555555?style=flat-square)](https://alembic.sqlalchemy.org)
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-555555?style=flat-square)](https://www.uvicorn.org)
+[![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=flat-square&logo=gunicorn&logoColor=white)](https://gunicorn.org)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)](https://jwt.io)
+[![PostgreSQL 14](https://img.shields.io/badge/PostgreSQL%2014-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+[![Neon](https://img.shields.io/badge/Neon-34D59A?style=flat-square&logo=neon&logoColor=black)](https://neon.tech)
+[![Redis](https://img.shields.io/badge/Redis-FF4438?style=flat-square&logo=redis&logoColor=white)](https://redis.io)
+[![Upstash](https://img.shields.io/badge/Upstash-01110D?style=flat-square&logo=upstash&logoColor=00E9A3)](https://upstash.com)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
+[![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](https://docs.pytest.org)
+[![Black](https://img.shields.io/badge/Black-000000?style=flat-square&logo=black&logoColor=white)](https://github.com/psf/black)
+[![isort](https://img.shields.io/badge/isort-1674B1?style=flat-square)](https://pycqa.github.io/isort/)
+[![Ruff](https://img.shields.io/badge/Ruff-D7FF64?style=flat-square&logo=ruff&logoColor=black)](https://github.com/astral-sh/ruff)
+[![Pyright](https://img.shields.io/badge/Pyright-555555?style=flat-square)](https://github.com/microsoft/pyright)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/features/actions)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
 [![CI/CD Pipeline](https://github.com/Troy2727/NEXORA/actions/workflows/ci.yml/badge.svg)](https://github.com/Troy2727/NEXORA/actions/workflows/ci.yml)
 
 [Features](#-features) · [Screenshots](#-screenshots) · [Quick start](#-quick-start) · [Architecture](#-architecture) · [API](#-api-reference) · [Development](#-development)
@@ -285,6 +301,37 @@ sequenceDiagram
 </details>
 
 ## <img src="docs/icons/layers.svg" width="24" height="24" alt="" /> Tech stack
+
+**Backend**<br/>
+[![Python 3.11](https://img.shields.io/badge/Python%203.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI 0.115](https://img.shields.io/badge/FastAPI%200.115-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Pydantic 2](https://img.shields.io/badge/Pydantic%202-E92063?style=flat-square&logo=pydantic&logoColor=white)](https://docs.pydantic.dev)
+[![SQLAlchemy 2](https://img.shields.io/badge/SQLAlchemy%202-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org)
+[![Alembic](https://img.shields.io/badge/Alembic-555555?style=flat-square)](https://alembic.sqlalchemy.org)
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-555555?style=flat-square)](https://www.uvicorn.org)
+[![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=flat-square&logo=gunicorn&logoColor=white)](https://gunicorn.org)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)](https://jwt.io)
+
+**Data**<br/>
+[![PostgreSQL 14](https://img.shields.io/badge/PostgreSQL%2014-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+[![Neon](https://img.shields.io/badge/Neon-34D59A?style=flat-square&logo=neon&logoColor=black)](https://neon.tech)
+[![Redis](https://img.shields.io/badge/Redis-FF4438?style=flat-square&logo=redis&logoColor=white)](https://redis.io)
+[![Upstash](https://img.shields.io/badge/Upstash-01110D?style=flat-square&logo=upstash&logoColor=00E9A3)](https://upstash.com)
+
+**Web app**<br/>
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
+[![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+
+**Quality & deploy**<br/>
+[![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](https://docs.pytest.org)
+[![Black](https://img.shields.io/badge/Black-000000?style=flat-square&logo=black&logoColor=white)](https://github.com/psf/black)
+[![isort](https://img.shields.io/badge/isort-1674B1?style=flat-square)](https://pycqa.github.io/isort/)
+[![Ruff](https://img.shields.io/badge/Ruff-D7FF64?style=flat-square&logo=ruff&logoColor=black)](https://github.com/astral-sh/ruff)
+[![Pyright](https://img.shields.io/badge/Pyright-555555?style=flat-square)](https://github.com/microsoft/pyright)
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)](https://github.com/features/actions)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com)
 
 | Layer | Technology |
 |---|---|

@@ -28,7 +28,7 @@ kanban board, calendar, reports, time tracking, goals, team chat and per-user pr
 
 ---
 
-## Features
+## <img src="docs/icons/sparkles.svg" width="24" height="24" alt="" /> Features
 
 | | |
 |---|---|
@@ -42,7 +42,7 @@ kanban board, calendar, reports, time tracking, goals, team chat and per-user pr
 | **Privacy by default** | Every task belongs to its owner, other users get `404` for tasks that aren't theirs, and team data is members-only. |
 | **Polished UI** | Dark, responsive design that works on phones, keyboard shortcuts (`N`, `/`), SVG icons and accessible contrast. |
 
-## Screenshots
+## <img src="docs/icons/image.svg" width="24" height="24" alt="" /> Screenshots
 
 **Overview**: today's focus, progress, activity, status breakdown and what's next
 
@@ -94,7 +94,7 @@ kanban board, calendar, reports, time tracking, goals, team chat and per-user pr
 
 </details>
 
-## Quick start
+## <img src="docs/icons/rocket.svg" width="24" height="24" alt="" /> Quick start
 
 **Requirements:** Docker and Docker Compose (for the API), and Python 3 (any version) to serve the web app.
 
@@ -120,7 +120,7 @@ Create an account at **Get started**, open the test inbox to read your 6-digit v
 > The web app talks to `http://localhost:8000` by default. To point it at another API, run
 > `localStorage.setItem("nexora_api", "https://your-api")` in the browser console.
 
-## Deploy
+## <img src="docs/icons/cloud-upload.svg" width="24" height="24" alt="" /> Deploy
 
 | Part | Where | How |
 |---|---|---|
@@ -134,7 +134,7 @@ directly. Migrations don't run on deploy; after adding one, run
 and, for verification emails, `SMTP_HOST`, `SMTP_PORT` (465), `SMTP_SSL` (true), `SMTP_USERNAME` and
 `SMTP_PASSWORD` with `vercel env add`.
 
-## Architecture
+## <img src="docs/icons/network.svg" width="24" height="24" alt="" /> Architecture
 
 ![NEXORA architecture: the web app calls FastAPI routers over REST with JWT; routers pass requests to use cases (business rules), which use repositories to reach PostgreSQL, store verification codes in Redis and send email over SMTP.](docs/diagrams/renders/architecture.gif "Click to see full size")
 
@@ -284,7 +284,7 @@ sequenceDiagram
 
 </details>
 
-## Tech stack
+## <img src="docs/icons/layers.svg" width="24" height="24" alt="" /> Tech stack
 
 | Layer | Technology |
 |---|---|
@@ -295,7 +295,7 @@ sequenceDiagram
 | Quality | pytest + pytest-asyncio, black, isort, ruff, pyright, GitHub Actions CI |
 | Runtime | Docker, Docker Compose |
 
-## Configuration
+## <img src="docs/icons/settings.svg" width="24" height="24" alt="" /> Configuration
 
 Settings are read from environment variables (or `.env`). Defaults are for local development only.
 
@@ -311,7 +311,7 @@ Settings are read from environment variables (or `.env`). Defaults are for local
 | `AUTH_ACCESS_TOKEN_EXPIRE_MINUTES` | `30` | Session length |
 | `AUTH_VERIFY_CODE_TTL` | `60` | Seconds a verification code stays valid |
 
-## API reference
+## <img src="docs/icons/braces.svg" width="24" height="24" alt="" /> API reference
 
 Interactive docs live at **`/docs`**. All endpoints except sign-up and login need `Authorization: Bearer <token>`.
 
@@ -369,7 +369,7 @@ Interactive docs live at **`/docs`**. All endpoints except sign-up and login nee
 
 </details>
 
-## Project structure
+## <img src="docs/icons/folder-tree.svg" width="24" height="24" alt="" /> Project structure
 
 ```text
 NEXORA/
@@ -396,7 +396,7 @@ NEXORA/
 └── pyproject.toml
 ```
 
-## Development
+## <img src="docs/icons/square-terminal.svg" width="24" height="24" alt="" /> Development
 
 ```bash
 poetry install --with dev,test   # install dependencies
@@ -411,7 +411,7 @@ The same checks run in [GitHub Actions](.github/workflows/ci.yml) on every push 
 Tests cover authentication, task ownership (users can never see or change each other's tasks), due dates,
 profile photos, account settings and every team permission rule.
 
-## Security
+## <img src="docs/icons/shield-check.svg" width="24" height="24" alt="" /> Security
 
 - **Ownership checks everywhere:** tasks are scoped to their owner; requests for someone else's task return `404`, so they don't reveal that it exists.
 - **Team permissions:** only members can read team data and chat; only the owner can invite, remove, rename or delete.
@@ -419,7 +419,7 @@ profile photos, account settings and every team permission rule.
 - **Uploads:** profile photos are limited to PNG/JPEG/WebP, checked by their actual bytes (not just the name), and capped at 256 KB; SVG is rejected.
 - **Output safety:** all user content is escaped in the web app, and CSV exports neutralise spreadsheet formulas.
 
-## Roadmap
+## <img src="docs/icons/map.svg" width="24" height="24" alt="" /> Roadmap
 
 - [ ] Shared team tasks and assigning tasks to teammates
 - [ ] Changing your email with re-verification

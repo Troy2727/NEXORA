@@ -18,7 +18,7 @@ kanban board, calendar, reports, time tracking, goals, team chat and per-user pr
 [![Pyright](https://img.shields.io/badge/pyright-checked-informational.svg)](https://github.com/microsoft/pyright/)
 [![CI/CD Pipeline](https://github.com/Troy2727/NEXORA/actions/workflows/ci.yml/badge.svg)](https://github.com/Troy2727/NEXORA/actions/workflows/ci.yml)
 
-[Features](#features) · [Screenshots](#screenshots) · [Quick start](#quick-start) · [Architecture](#architecture) · [API](#api-reference) · [Development](#development)
+[Features](#-features) · [Screenshots](#-screenshots) · [Quick start](#-quick-start) · [Architecture](#-architecture) · [API](#-api-reference) · [Development](#-development)
 
 <br>
 
